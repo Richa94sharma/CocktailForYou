@@ -1,0 +1,10 @@
+<div class="row">
+  <div class="col-6 card-div pointer" *ngFor="let list of cocktailList">
+    <mat-card (click)="drinksDetails(list.name)">
+      <mat-card-header>
+        <mat-card-title class="card-title">{{list.strDrink}}</mat-card-title>
+      </mat-card-header>
+      <img mat-card-image src="{{list.strDrinkThumb}}" class="img-style" alt="{{list.strDrink}}">
+    </mat-card>
+  </div>
+</div>

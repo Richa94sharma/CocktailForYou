@@ -1,0 +1,34 @@
+<div class="row selection-div">
+  <div class="col-12">
+    <mat-radio-group
+      aria-labelledby="radio-group"
+      class="radio-group" (change)="updateList()"
+      [(ngModel)]="filteredValue">
+      <mat-radio-button class="radio-selection" value="all">All</mat-radio-button>
+      <mat-radio-button class="radio-selection" value="alcoholic">Alcoholic</mat-radio-button>
+      <mat-radio-button class="radio-selection" value="non_alcoholic">Non Alcoholic</mat-radio-button>
+    </mat-radio-group>
+  </div>
+</div>
+
+<div class="row" *ngIf="drinkList" >
+  <div class="col-6 card-div pointer" *ngFor="let drink of filteredDrinkList">
+    <mat-card (click)="showDetails(drink.idDrink)">
+        <mat-card-header>
+          <mat-card-title>{{drink.strDrink}}</mat-card-title>
+        </mat-card-header>
+        <img mat-card-image class="img-style" [src]="drink.strDrinkThumb" [alt]="drink.strImageAttribution || drink.strDrink">
+        <mat-card-content>
+            <p *ngIf="drink.strAlcoholic"><strong>Beverages: </strong> {{drink.strAlcoholic}}</p>
+            <p *ngIf="drink.strGlass"> <strong>Glass: </strong> {{drink.strGlass}}</p>
+            <p *ngIf="drink.strCategory"><strong>Category:</strong> {{drink.strCategory}}</p>
+        </mat-card-content>
+      </mat-card>
+    </div>
+</div>
+
+<div class="row" *ngIf="filteredDrinkList.length === 0">
+  <div class="col-12 card-div">
+    No drinks found!
+  </div>
+</div>

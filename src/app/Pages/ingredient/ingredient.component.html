@@ -1,0 +1,32 @@
+<div class="row" *ngIf="drink">
+    <div class="col-12 card-div">
+        <mat-card>
+            <mat-card-header>
+                <mat-card-title class="card-title">{{drink.strDrink}}</mat-card-title>
+              </mat-card-header>
+              <div class="row">
+                <div class="col-6">
+                    <img mat-card-image class="img-style img-details" [src]="drink.strDrinkThumb" [alt]="drink.strImageAttribution || drink.strDrink">
+                </div>
+                <div class="col-6">
+                    <mat-card-content>
+                      <p *ngIf="drink.strAlcoholic"><strong>Beverages: </strong> {{drink.strAlcoholic}}</p>
+                      <p *ngIf="drink.strInstructions"><strong>Instructions: </strong>{{drink.strInstructions}}</p>
+                      <p><strong>Ingredient's List:</strong></p>
+                      <ul>
+                          <li *ngFor="let ingredient of ingredientArray; let i = index;">
+                              {{ingredient}}{{measureArray[i] ? ' - ' + measureArray[i] : ''}}
+                          </li>
+                      </ul>
+                    </mat-card-content>
+                </div>
+              </div>
+        </mat-card>
+    </div>
+</div>
+
+<div class="row" *ngIf="!drink">
+    <div class="col-12 card-div">
+        No drinks found!
+    </div>
+</div>
